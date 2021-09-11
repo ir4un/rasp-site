@@ -1,22 +1,31 @@
 import './App.css';
-import React from 'react';
 import Landing from './component/landing-page/Landing';
-import TopBar from './component/default/TopBar';
+import {
+  // React-Router-Dom-Package
+  Link, Router, Route, Switch, Redirect,
+  // Custom Components
+  NavBar,
+  // MUI Styling Package
+  useStyles,
+  // MUI Core Packages
+  ThemeProvider,
 
-import { Button, Container } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+} from './imports/imports';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <body>
-        <TopBar />
-        <Container className="main-content">
-          <Landing />
-        </Container>
-      </body>
+    <div className="main">
+      <Router>
+        <Route exact path="/">
+          <Redirect to="/welcome" />
+        </Route>
+        <Route path="/welcome">
+          <NavBar />
+          <body >
+            <Landing />
+          </body>
+        </Route>
+      </Router>
     </div>
   );
 }
